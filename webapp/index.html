@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Telega HUB</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="./config.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <button class="brand" type="button" data-view="feed">
+          <span>Telega</span><b>HUB</b>
+        </button>
+        <button class="balance-pill" type="button" data-view="balance">
+          <span id="balanceStars">0</span><span>Stars</span>
+        </button>
+      </header>
+
+      <nav class="tabs" aria-label="Навигация">
+        <button class="tab is-active" type="button" data-view="feed">Лента</button>
+        <button class="tab" type="button" data-view="creator">Автор</button>
+        <button class="tab" type="button" data-view="balance">Баланс</button>
+        <button class="tab hidden" type="button" data-view="admin" id="adminTab">Админ</button>
+      </nav>
+
+      <section class="screen" id="screen"></section>
+      <div class="toast hidden" id="toast"></div>
+    </main>
+
+    <template id="mediaTpl">
+      <div class="media-shell">
+        <div class="media-loader">Загрузка</div>
+      </div>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: telega_hub
+    volumes:
+      - telega_hub_pg:/var/lib/postgresql/data
+
+  bot:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      BOT_TOKEN: ${BOT_TOKEN:-}
+      DATABASE_URL: ${DATABASE_URL:-postgres://postgres:root@postgres/telega_hub}
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost:5080}
+      WEBAPP_URL: ${WEBAPP_URL:-http://localhost:5080}
+      BOT_ADMINS: ${BOT_ADMINS:-}
+    ports:
+      - "5080:5080"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./config.yaml:/app/config.yaml:ro
+    command: python -m src
+
+volumes:
+  telega_hub_pg:

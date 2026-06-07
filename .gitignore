@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+uploads/*
+!uploads/.gitkeep
+data/
+logs/
+*.tar.gz
+*.tar.xz
+node_modules/
+.vercel/
