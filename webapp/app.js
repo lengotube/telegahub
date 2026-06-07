@@ -9,7 +9,8 @@ if (tg) {
 }
 
 const params = new URLSearchParams(location.search);
-const API_BASE = (params.get("api") || window.TELEGA_HUB_API_BASE || "http://localhost:5080").replace(/\/$/, "");
+const configuredApiBase = params.has("api") ? params.get("api") : window.TELEGA_HUB_API_BASE;
+const API_BASE = configuredApiBase === undefined ? "http://localhost:5080" : configuredApiBase.replace(/\/$/, "");
 const DEV_USER_ID = params.get("dev_user_id") || localStorage.getItem("tghub_dev_user_id") || "1001";
 localStorage.setItem("tghub_dev_user_id", DEV_USER_ID);
 
