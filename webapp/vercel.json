@@ -1,6 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/api/:path*", "destination": "http://77.91.65.188:5080/api/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
